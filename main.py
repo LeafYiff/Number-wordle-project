@@ -10,14 +10,16 @@ import json
 
 
 def language_select() -> str:
+    start_message = '''
+Choose your language: 
+\t\t Press 1 if you speak English
+\t\t Натисніть 2 якщо ви спілкуєтесь Українською
+\t\t Drücken Sie 3, wenn Sie Deutsch sprechen
+\t\t Presiona 4 si hablas Español    
+    Input: '''
+
     while True:
-        language = input('''
-            Choose your language: 
-            \t\t Press 1 if you speak English
-            \t\t Натисніть 2 якщо ви спілкуєтесь Українською
-            \t\t Drücken Sie 3, wenn Sie Deutsch sprechen
-            \t\t Presiona 4 si hablas Español    
-            Input: ''').strip()
+        language = input(start_message).strip()
         if language in '1234':
             break
         else:
@@ -29,16 +31,19 @@ def language_select() -> str:
 def _file_select(language_code):
     match language_code:
         case '1':
-            return 'eng1.json'
+            return 'translations\\eng1.json'
         case '2':
-            return 'ukr2.json'
+            return 'translations\\ukr2.json'
         case '3':
-            return 'spn3.json'
+            return 'translations\\ger3.json'
         case '4':
-            return 'ger4.json'
+            return 'translations\\spn4.json'
 
 
 def translation_reader(language_code) -> dict:
+    """
+    Read json file with translations
+    """
     fname = _file_select(language_code)
     with open(fname, 'r', encoding="utf-8") as file:
         return json.load(file)
@@ -91,27 +96,27 @@ def check_guess(guess: str, num: str, n_digit: int):
     return green, yellow, None
 
 
-def output_guess(loop, green, yellow, error=None):
+def output_guess(loop, green, yellow, translation, error=None):
     """
-    Printing the result of guess including massages about the errors if there are any
+    Printing the result of guess including messages about the errors if there are any
     """
     if error is None:
-        print(f'Try {loop}: \n\t green: {green}, yellow: {yellow}')
+        print(translation["guess_result"].format(loop=loop, green=green, yellow=yellow), end='\n\n')
     elif error == 1:
-        print("Don't match the length")
+        print(translation["error_1_message"], end='\n\n')
     elif error == 2:
-        print('The numbers must be unique! Try with no repeated numbers')
+        print(translation["error_2_message"], end='\n\n')
     elif error == 3:
-        print('You must use only decimal numbers')
+        print(translation["error_3_message"], end='\n\n')
     else:
-        print('Some Error occurred')
+        print(translation["error_else_message"], end='\n\n')
 
 
-def end_game(num, loop):
+def end_game(num, loop, translation):
     """
-    Print a win massage
+    Print a win message
     """
-    print(f'You have won! The number was {num}. You have used {loop} tries')
+    print(translation['win_message'].format(loop=loop, num=num))
 
 
 def main():
@@ -128,15 +133,15 @@ def main():
     guess = None
     loop = 0
     while guess != num:
-        guess = input('Guess the number: ').strip()
+        guess = input(translation['input_guess']).strip()
 
         green, yellow, error = check_guess(guess, num, n_digit)
         if error is None:
             loop += 1
 
-        output_guess(loop, green, yellow, error)
+        output_guess(loop, green, yellow, translation, error)
 
-    end_game(num, loop)
+    end_game(num, loop, translation)
 
 
 if __name__ == '__main__':
@@ -145,4 +150,4 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print('\nGame aborted')
     except Exception as e:
-        print('Some error occurred ', e)
+        print('Some error occurred: ', e)

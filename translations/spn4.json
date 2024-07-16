@@ -1,0 +1,11 @@
+{
+    "greeting": "Wordle para números:\n\t\tDado un número de n dígitos. Cada dígito se utiliza una sola vez, es decir, no se repite. Tu tarea es adivinar el número.\n\t\tSi adivinas el dígito correcto en la posición correcta, obtienes una marca verde\n\t\t Si adivinas el dígito correcto pero no en tu ciudad, obtienes una marca amarilla\n\t\tSi adivinas el dígito correcto, obtienes una marca amarilla, si el dígito no está en el número, no obtienes ninguna marca\n",
+    "input_n": "Introduce el número de dígitos del número (de 1 a 9): ",
+    "input_guess": "Tu suposición: ",
+    "guess_result": "Intento {loop}: \n\tverde: {green}, amarillo: {yellow}",
+    "error_1_message": "El número de dígitos no coincide con el número especificado",
+    "error_2_message": "Los dígitos deben ser únicos, es decir, no deben repetirse",
+    "error_3_message": "Sólo se pueden utilizar dígitos decimales",
+    "error_else_message": "¡Uy! Se ha producido un error",
+    "win_message": "¡Felicidades! El número adivinado es {num}. Tardaste {loop} intentos en ganar"
+}

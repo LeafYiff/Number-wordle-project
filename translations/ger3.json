@@ -1,0 +1,11 @@
+{
+    "greeting": "Wordle für Zahlen:\n\t\tGeben Sie eine n-stellige Zahl an. Jede Ziffer wird nur einmal verwendet, d.h. sie wird nicht wiederholt. Deine Aufgabe ist es, die Zahl zu erraten. \n\t\tWenn du die richtige Ziffer an der richtigen Stelle errätst, bekommst du eine grüne Markierung. \n\t\tWenn du die richtige Ziffer errätst, aber nicht in deiner Stadt, bekommst du eine gelbe Markierung. \n\t\tWenn du die richtige Ziffer errätst, bekommst du eine gelbe Markierung, wenn die Ziffer nicht in der Zahl ist, bekommst du keine Markierung\n",
+    "input_n": "Geben Sie die Anzahl der Ziffern der Zahl ein (von 1 bis 9): ",
+    "input_guess": "Ihre Vermutung: ",
+    "guess_result": "Versuch {loop}:  \n\t Grün: {green}, Gelb: {yellow}",
+    "error_1_message": "Die Anzahl der Ziffern stimmt nicht mit der angegebenen Zahl überein.",
+    "error_2_message": "Die Ziffern müssen eindeutig sein, d.h. sie dürfen sich nicht wiederholen.",
+    "error_3_message": "Sie können nur Dezimalzahlen verwenden",
+    "error_else_message": "Ups! Es ist ein Fehler aufgetreten.",
+    "win_message": "Glückwunsch! Die erratene Zahl ist {num}. Es hat {loop} Versuche gebraucht, um zu gewinnen."
+}

@@ -1,5 +1,0 @@
-{
-    "greeting": "Wordle for numbers:\n\t\tthere are n-digit number. Every digit is unique. You need to figure it out.\n\t\tIf you guessed correct digit on correct spot - it's green mark\n\t\tIf you guessed correct digit on incorrect spot - it's yellow mark\n\t\tIf you guessed incorrect digit on correct spot - it's nothing\n",
-    "input_n": "Enter the number of digits(from 1 to 9): "
-
-}
