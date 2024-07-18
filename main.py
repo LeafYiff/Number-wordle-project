@@ -8,6 +8,15 @@ If you guessed incorrect digit on correct spot - it's nothing
 import random
 import json
 
+# Визначення ANSI кодів для кольорів
+# Приклад виведення кольорового тексту
+# print(f"{RED}Цей текст червоний{RESET}")
+RED = "\033[31m"
+GREEN = "\033[32m"
+BLUE = "\033[34m"
+YELLOW = "\033[33m"
+RESET = "\033[0m"
+
 
 def language_select() -> str:
     start_message = '''
