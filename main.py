@@ -65,7 +65,6 @@ def colored_text(text, color=None, on_color=None, attrs=None):
 
     start = '\033[' + ';'.join(codes) + 'm' if codes else ''
     end = '\033[0m' if codes else ''
-    print(f"codes={codes}")
     return f"{start}{text}{end}"
 
 
