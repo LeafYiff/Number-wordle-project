@@ -8,14 +8,65 @@ If you guessed incorrect digit on correct spot - it's nothing
 import random
 import json
 
-# Визначення ANSI кодів для кольорів
-# Приклад виведення кольорового тексту
-# print(f"{RED}Цей текст червоний{RESET}")
-RED = "\033[31m"
-GREEN = "\033[32m"
-BLUE = "\033[34m"
-YELLOW = "\033[33m"
-RESET = "\033[0m"
+
+def colored_text(text, color=None, on_color=None, attrs=None):
+    """
+    Returns text with the specified color, background color, and styles.
+
+    Options:
+    - text (str): text to color
+    - color (str, optional): text color (black, red, green, yellow, blue, purple, cyan, white)
+    - on_color (str, optional): background color (black, red, green, yellow, blue, purple, cyan, white)
+    - attrs (list of str, optional): list of styles (bold, underline, blink, reverse, hidden)
+
+    Returns:
+    - str: colored text
+    """
+    colors = {
+        'black': 30,
+        'red': 31,
+        'green': 32,
+        'yellow': 33,
+        'blue': 34,
+        'magenta': 35,
+        'cyan': 36,
+        'white': 37
+    }
+
+    on_colors = {
+        'black': 40,
+        'red': 41,
+        'green': 42,
+        'yellow': 43,
+        'blue': 44,
+        'magenta': 45,
+        'cyan': 46,
+        'white': 47
+    }
+
+    attributes = {
+        'bold': 1,
+        'underline': 4,
+        'blink': 5,
+        'reverse': 7,
+        'hidden': 8
+    }
+
+    codes = []
+
+    if color in colors:
+        codes.append(str(colors[color]))
+    if on_color in on_colors:
+        codes.append(str(on_colors[on_color]))
+    if attrs:
+        for attr in attrs:
+            if attr in attributes:
+                codes.append(str(attributes[attr]))
+
+    start = '\033[' + ';'.join(codes) + 'm' if codes else ''
+    end = '\033[0m' if codes else ''
+    print(f"codes={codes}")
+    return f"{start}{text}{end}"
 
 
 def language_select() -> str:
@@ -110,7 +161,10 @@ def output_guess(loop, green, yellow, translation, error=None):
     Printing the result of guess including messages about the errors if there are any
     """
     if error is None:
-        print(translation["guess_result"].format(loop=loop, green=green, yellow=yellow), end='\n\n')
+        print(translation["guess_result"].format(loop=loop,
+                                                 green=colored_text(text=green, color='green'),
+                                                 yellow=colored_text(text=yellow, color='yellow'),
+                                                 end='\n\n'))
     elif error == 1:
         print(translation["error_1_message"], end='\n\n')
     elif error == 2:
